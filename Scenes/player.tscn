@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dypaa1cr0c5co"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_a6yun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay2ad"]
+size = Vector2(64, 96)
+
+[sub_resource type="QuadMesh" id="QuadMesh_col54"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a6yun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_ay2ad")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -52)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(64, 96)
+mesh = SubResource("QuadMesh_col54")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Player
+"
+fit_content = true
