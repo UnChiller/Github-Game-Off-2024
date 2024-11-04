@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://uhy2x6mkeac"]
+[gd_scene load_steps=5 format=3 uid="uid://uhy2x6mkeac"]
 
 [ext_resource type="PackedScene" uid="uid://dypaa1cr0c5co" path="res://Scenes/player.tscn" id="1_p4fo7"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6nx4q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2su"]
+size = Vector2(20, 520)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b115b"]
 size = Vector2(960, 20)
@@ -12,14 +15,26 @@ size = Vector2(960, 20)
 [node name="Player" parent="." instance=ExtResource("1_p4fo7")]
 position = Vector2(80, 1040)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Wall" type="StaticBody2D" parent="."]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Wall"]
+position = Vector2(20, 540)
+scale = Vector2(40, 1080)
+mesh = SubResource("QuadMesh_6nx4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(20, 520)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ho2su")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
 position = Vector2(960, 1060)
 scale = Vector2(1920, 40)
 mesh = SubResource("QuadMesh_6nx4q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="FloorCollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(960, 1060)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_b115b")
