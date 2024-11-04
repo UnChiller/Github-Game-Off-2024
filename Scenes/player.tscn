@@ -1,23 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dypaa1cr0c5co"]
+[gd_scene load_steps=4 format=3 uid="uid://dypaa1cr0c5co"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a6yun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay2ad"]
-size = Vector2(160, 240)
-
-[sub_resource type="GDScript" id="GDScript_qh1x1"]
-script/source = "extends Camera2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
+size = Vector2(80, 120)
 
 [sub_resource type="QuadMesh" id="QuadMesh_col54"]
 
@@ -25,28 +11,26 @@ func _process(delta):
 script = ExtResource("1_a6yun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -120)
+position = Vector2(0, -60)
 shape = SubResource("RectangleShape2D_ay2ad")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -52)
 limit_left = 0
 limit_top = 0
-limit_bottom = 648
-limit_smoothed = true
-script = SubResource("GDScript_qh1x1")
+limit_bottom = 540
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(0, -120)
-scale = Vector2(160, 240)
+position = Vector2(0, -60)
+scale = Vector2(80, 120)
 mesh = SubResource("QuadMesh_col54")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -50.0
-offset_top = -144.0
-offset_bottom = -120.0
-scale = Vector2(2, 2)
+offset_left = -24.0
+offset_top = -75.0
+offset_right = 26.0
+offset_bottom = -51.0
 bbcode_enabled = true
 text = "Player"
 fit_content = true

@@ -10,16 +10,16 @@ size = Vector2(960, 20)
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_p4fo7")]
-position = Vector2(160, 2080)
+position = Vector2(80, 1040)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-position = Vector2(1920, 2120)
-scale = Vector2(3840, 80)
+position = Vector2(960, 1060)
+scale = Vector2(1920, 40)
 mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1920, 2120)
-scale = Vector2(4, 4)
+position = Vector2(960, 1060)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_b115b")
