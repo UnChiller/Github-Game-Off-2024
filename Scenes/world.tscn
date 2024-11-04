@@ -1,6 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://uhy2x6mkeac"]
+[gd_scene load_steps=6 format=3 uid="uid://uhy2x6mkeac"]
 
 [ext_resource type="PackedScene" uid="uid://dypaa1cr0c5co" path="res://Scenes/player.tscn" id="1_p4fo7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ugdm"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6nx4q"]
 
@@ -14,6 +32,10 @@ size = Vector2(960, 20)
 
 [node name="Player" parent="." instance=ExtResource("1_p4fo7")]
 position = Vector2(80, 1040)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_1ugdm")
+animation = &"jump"
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
