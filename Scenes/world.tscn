@@ -6,6 +6,11 @@
 animations = [{
 "frames": [],
 "loop": true,
+"name": &"grab",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -35,7 +40,7 @@ position = Vector2(80, 1040)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_1ugdm")
-animation = &"jump"
+animation = &"grab"
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
