@@ -45,7 +45,7 @@ animation = &"grab"
 [node name="Wall" type="StaticBody2D" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Wall"]
-modulate = Color(0.4, 0.4, 0.4, 1)
+modulate = Color(0.901961, 0.94902, 0.937255, 1)
 position = Vector2(20, 520)
 scale = Vector2(40, 1040)
 mesh = SubResource("QuadMesh_6nx4q")
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_ho2su")
 [node name="Floor" type="StaticBody2D" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Floor"]
-modulate = Color(0.42, 0.2184, 0.2184, 1)
+modulate = Color(0.247059, 0.427451, 0.619608, 1)
 position = Vector2(960, 1060)
 scale = Vector2(1920, 40)
 mesh = SubResource("QuadMesh_6nx4q")
