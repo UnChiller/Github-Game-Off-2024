@@ -4,9 +4,12 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
 
-var anim_state = "idle"
-var is_jumping = false
+var anim_state  = "idle"
+var is_jumping  = false
+var jump_grace  = 0
+var coyote_time = 0
 
+# Please place all player children in the player scene (except cam)
 @onready var anim_sprite = $AnimatedSprite2D
 
 # =======================
@@ -16,6 +19,10 @@ var is_jumping = false
 func _physics_process(delta):
 	jump_check(delta)
 	move_check()
+	
+	#var last_collision = get_last_slide_collision()
+	#if last_collision != null:
+	#	print(last_collision.get_normal())
 
 	anim_state_check()
 
@@ -31,12 +38,21 @@ func jump_check(delta):
 		anim_state = "idle"
 		is_jumping = false
 		
+	# Allow buffering jump
+	if Input.is_action_just_pressed("jump"):
+		jump_grace = 6 # 6t/60tps = 100ms 
+	elif jump_grace > 0:
+		jump_grace -= 1
+	
 	# Add the gravity.
 	if not is_on_floor():
+		coyote_time -= 1
 		velocity += get_gravity() * delta
-
+	else:
+		coyote_time = 6
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if coyote_time > 0 and jump_grace > 0:
+		coyote_time = 0
 		velocity.y = JUMP_VELOCITY
 		anim_state = "jump"
 		is_jumping = true
@@ -54,9 +70,6 @@ func move_check():
 		if (anim_state != "jump"): anim_state = "idle"
 
 	move_and_slide()
-	# var last_collision = get_last_slide_collision()
-	# if last_collision != null:
-	# 	print(last_collision.get_normal())
 
 
 func anim_state_check():

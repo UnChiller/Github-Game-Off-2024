@@ -1,29 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://uhy2x6mkeac"]
+[gd_scene load_steps=7 format=3 uid="uid://uhy2x6mkeac"]
 
 [ext_resource type="PackedScene" uid="uid://dypaa1cr0c5co" path="res://Scenes/player.tscn" id="1_p4fo7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1ugdm"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"grab",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6nx4q"]
 
@@ -33,14 +10,22 @@ size = Vector2(20, 520)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b115b"]
 size = Vector2(960, 20)
 
-[node name="World" type="Node2D"]
+[sub_resource type="QuadMesh" id="QuadMesh_nxo1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0hta"]
+size = Vector2(719.875, 19.75)
+
+[node name="Debug Room" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_p4fo7")]
-position = Vector2(80, 1040)
+position = Vector2(120, 880)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_1ugdm")
-animation = &"grab"
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position = Vector2(0, -52)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 540
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -52,6 +37,19 @@ mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(20, 520)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ho2su")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Wall2"]
+modulate = Color(0.901961, 0.94902, 0.937255, 1)
+position = Vector2(1900, 520)
+scale = Vector2(40, 1040)
+mesh = SubResource("QuadMesh_6nx4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(1900, 520)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ho2su")
 
@@ -67,3 +65,29 @@ mesh = SubResource("QuadMesh_6nx4q")
 position = Vector2(960, 1060)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_b115b")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
+modulate = Color(0.247059, 0.427451, 0.619608, 1)
+position = Vector2(960, 900)
+scale = Vector2(1440, 40)
+mesh = SubResource("QuadMesh_nxo1o")
+
+[node name="FloorCollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(960, 900)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_y0hta")
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2"]
+modulate = Color(0.247059, 0.427451, 0.619608, 1)
+position = Vector2(960, 660)
+scale = Vector2(1440, 40)
+mesh = SubResource("QuadMesh_nxo1o")
+
+[node name="FloorCollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(960, 660)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_y0hta")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dypaa1cr0c5co"]
+[gd_scene load_steps=5 format=3 uid="uid://dypaa1cr0c5co"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a6yun"]
 
@@ -7,6 +7,29 @@ size = Vector2(80, 120)
 
 [sub_resource type="QuadMesh" id="QuadMesh_col54"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h08t"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"grab",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a6yun")
 
@@ -14,19 +37,14 @@ script = ExtResource("1_a6yun")
 position = Vector2(0, -60)
 shape = SubResource("RectangleShape2D_ay2ad")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -52)
-limit_left = 0
-limit_top = 0
-limit_bottom = 540
-
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.968627, 0.513726, 0.690196, 1)
 position = Vector2(0, -60)
 scale = Vector2(80, 120)
 mesh = SubResource("QuadMesh_col54")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.0823529, 0.0862745, 0.25098, 1)
 offset_left = -24.0
 offset_top = -75.0
 offset_right = 26.0
@@ -35,3 +53,7 @@ bbcode_enabled = true
 text = "Player"
 fit_content = true
 scroll_active = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4h08t")
+animation = &"grab"
