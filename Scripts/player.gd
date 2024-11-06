@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 
+#TODO: fix animations with new platformer movement
+
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
 
@@ -17,12 +19,8 @@ var coyote_time = 0
 # =======================
 
 func _physics_process(delta):
-	jump_check(delta)
 	move_check()
-	
-	#var last_collision = get_last_slide_collision()
-	#if last_collision != null:
-	#	print(last_collision.get_normal())
+	jump_check(delta)
 
 	anim_state_check()
 
@@ -51,7 +49,17 @@ func jump_check(delta):
 	else:
 		coyote_time = 6
 	# Handle jump.
+	if is_on_wall_only() and jump_grace > 0:
+		var last_collision = get_last_slide_collision()
+		if last_collision != null:
+			jump_grace = 0
+			coyote_time = 0
+			print(last_collision.get_normal()*1500)
+			velocity += last_collision.get_normal() * 1500
+			velocity.y = JUMP_VELOCITY
+			print(velocity)
 	if coyote_time > 0 and jump_grace > 0:
+		jump_grace = 0
 		coyote_time = 0
 		velocity.y = JUMP_VELOCITY
 		anim_state = "jump"
@@ -60,10 +68,12 @@ func jump_check(delta):
 
 func move_check():
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	#NOTE: if the player is accelerated faster than the max movement speed,
+	#NOTE: the player pressing a direction will cause them to suddenly decelerate
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x += .2 * direction * SPEED
+		velocity.x = sign(velocity.x)*min(abs(velocity.x), SPEED)
 		if (anim_state != "jump"): anim_state = "walk"
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
