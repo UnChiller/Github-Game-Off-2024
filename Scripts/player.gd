@@ -74,6 +74,10 @@ func move_check():
 	if direction:
 		velocity.x += .2 * direction * SPEED
 		velocity.x = sign(velocity.x)*min(abs(velocity.x), SPEED)
+		
+		if velocity.x > 0: anim_sprite.flip_h = false
+		else: if velocity.x < 0: anim_sprite.flip_h = true
+		
 		if (anim_state != "jump"): anim_state = "walk"
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

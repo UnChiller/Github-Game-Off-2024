@@ -62,6 +62,7 @@ position = Vector2(0, -60)
 shape = SubResource("RectangleShape2D_ay2ad")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
 modulate = Color(0.968627, 0.513726, 0.690196, 1)
 position = Vector2(0, -60)
 scale = Vector2(80, 120)
@@ -79,5 +80,8 @@ fit_content = true
 scroll_active = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -60)
 sprite_frames = SubResource("SpriteFrames_4h08t")
 animation = &"walk"
+frame = 1
+frame_progress = 0.602805
