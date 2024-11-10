@@ -8,12 +8,12 @@
 size = Vector2(20, 520)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b115b"]
-size = Vector2(960, 20)
+size = Vector2(1920, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_nxo1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0hta"]
-size = Vector2(719.875, 19.75)
+size = Vector2(1440, 40)
 
 [node name="Debug Room" type="Node2D"]
 
@@ -59,7 +59,6 @@ mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="FloorCollision" type="CollisionShape2D" parent="Room"]
 position = Vector2(960, 1060)
-scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_b115b")
 
 [node name="Platform1Mesh" type="MeshInstance2D" parent="Room"]
@@ -70,7 +69,6 @@ mesh = SubResource("QuadMesh_nxo1o")
 
 [node name="Platform1Collision" type="CollisionShape2D" parent="Room"]
 position = Vector2(960, 900)
-scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_y0hta")
 
 [node name="Platform2Mesh" type="MeshInstance2D" parent="Room"]
@@ -81,5 +79,4 @@ mesh = SubResource("QuadMesh_nxo1o")
 
 [node name="Platform2Collision" type="CollisionShape2D" parent="Room"]
 position = Vector2(960, 660)
-scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_y0hta")

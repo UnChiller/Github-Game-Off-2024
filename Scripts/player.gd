@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
+const WALL_JUMP_COLL_DIST = 10
 
 var anim_state  = "idle"
 var is_jumping  = false
@@ -30,11 +31,23 @@ func _physics_process(delta):
 # Movement Handling
 # =======================
 
-#func climb_check():
-#	var direction = Input.get_axis("move_left", "move_right")
-#	var grab_direction = Input.get_axis("grab_left", "grab_right")
-	
-	
+func wall_check():
+	var space_state = get_world_2d().direct_space_state
+	for y in [0,12,24,36,48,60,72,84,96,108,120]:
+		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-y),
+			position+Vector2(40 + WALL_JUMP_COLL_DIST,-y))
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result != {}:
+			return -1
+	for y in [0,12,24,36,48,60,72,84,96,108,120]:
+		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-y),
+			position+Vector2(-40 - WALL_JUMP_COLL_DIST,-y))
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result != {}:
+			return 1
+	return 0
 
 func jump_check(delta):
 	# Landing
@@ -55,15 +68,12 @@ func jump_check(delta):
 	else:
 		coyote_time = 6
 	# Handle jump.
-	if is_on_wall_only() and jump_grace > 0:
-		var last_collision = get_last_slide_collision()
-		if last_collision != null:
-			jump_grace = 0
-			coyote_time = 0
-			print(last_collision.get_normal()*1500)
-			velocity += last_collision.get_normal() * 1500
-			velocity.y = JUMP_VELOCITY
-			print(velocity)
+	var wall_side = wall_check()
+	if wall_side and jump_grace > 0 and not is_on_floor():
+		jump_grace = 0
+		coyote_time = 0
+		velocity.x += wall_side * 1500
+		velocity.y = JUMP_VELOCITY
 	if coyote_time > 0 and jump_grace > 0:
 		jump_grace = 0
 		coyote_time = 0
