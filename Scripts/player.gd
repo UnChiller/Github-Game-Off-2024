@@ -30,12 +30,18 @@ func _physics_process(delta):
 # Movement Handling
 # =======================
 
+#func climb_check():
+#	var direction = Input.get_axis("move_left", "move_right")
+#	var grab_direction = Input.get_axis("grab_left", "grab_right")
+	
+	
+
 func jump_check(delta):
 	# Landing
 	if anim_state == "jump" and is_on_floor():
 		anim_state = "idle"
 		is_jumping = false
-		
+	
 	# Allow buffering jump
 	if Input.is_action_just_pressed("jump"):
 		jump_grace = 6 # 6t/60tps = 100ms 
