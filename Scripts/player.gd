@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
-const WALL_JUMP_COLL_DIST = 10
+const WALL_JUMP_COLL_DIST = 20
 
 var anim_state  = "idle"
 var is_jumping  = false
@@ -60,16 +60,16 @@ func apply_gravity(delta):
 
 func wall_check(dist):
 	var space_state = get_world_2d().direct_space_state
-	for y in [0,12,24,36,48,60,72,84,96,108,120]:
+	for y in range(0,180,30):
 		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-y),
-			position+Vector2(40 + dist,-y))
+			position+Vector2(60 + dist,-y))
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
 		if result != {}:
 			return -1
-	for y in [0,12,24,36,48,60,72,84,96,108,120]:
+	for y in range(0,180,30):
 		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-y),
-			position+Vector2(-40 - dist,-y))
+			position+Vector2(-60 - dist,-y))
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
 		if result != {}:
@@ -116,7 +116,7 @@ func move_check():
 		if velocity.x > 0: anim_sprite.flip_h = false
 		else: if velocity.x < 0: anim_sprite.flip_h = true
 		
-		if (anim_state != "jump" and anim_state != "grab"): anim_state = "walk"
+		anim_state = "walk"
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if (anim_state != "jump" and anim_state != "grab"): anim_state = "idle"
@@ -125,5 +125,4 @@ func move_check():
 
 
 func anim_state_check():
-	if is_jumping: anim_sprite.play("jump")
-	else: anim_sprite.play(anim_state)
+	anim_sprite.play(anim_state)

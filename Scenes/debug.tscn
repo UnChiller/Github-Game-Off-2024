@@ -1,82 +1,94 @@
 [gd_scene load_steps=7 format=3 uid="uid://uhy2x6mkeac"]
 
-[ext_resource type="PackedScene" uid="uid://dypaa1cr0c5co" path="res://Scenes/player.tscn" id="1_p4fo7"]
+[ext_resource type="PackedScene" uid="uid://dypaa1cr0c5co" path="res://Scenes/player.tscn" id="1_cuhlu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_6nx4q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho2su"]
-size = Vector2(20, 520)
+size = Vector2(60, 1020)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b115b"]
-size = Vector2(1920, 40)
+size = Vector2(1920, 60)
 
 [sub_resource type="QuadMesh" id="QuadMesh_nxo1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0hta"]
-size = Vector2(1440, 40)
+size = Vector2(1080, 60)
 
 [node name="Debug Room" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_p4fo7")]
-position = Vector2(120, 880)
+[node name="Player" parent="." instance=ExtResource("1_cuhlu")]
+position = Vector2(180, 880)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 position = Vector2(0, -52)
 limit_left = 0
-limit_top = 0
+limit_top = -240
 limit_right = 1920
-limit_bottom = 540
+limit_bottom = 1080
 
 [node name="Room" type="StaticBody2D" parent="."]
 
 [node name="Wall1Mesh" type="MeshInstance2D" parent="Room"]
 modulate = Color(0.901961, 0.94902, 0.937255, 1)
-position = Vector2(20, 520)
-scale = Vector2(40, 1040)
+position = Vector2(30, 510)
+scale = Vector2(60, 1020)
 mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="Wall1Collision" type="CollisionShape2D" parent="Room"]
-position = Vector2(20, 520)
-scale = Vector2(2, 2)
+visible = false
+position = Vector2(30, 510)
 shape = SubResource("RectangleShape2D_ho2su")
 
 [node name="Wall2Mesh" type="MeshInstance2D" parent="Room"]
 modulate = Color(0.901961, 0.94902, 0.937255, 1)
-position = Vector2(1900, 520)
-scale = Vector2(40, 1040)
+position = Vector2(1890, 510)
+scale = Vector2(60, 1020)
 mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="Wall2Collision" type="CollisionShape2D" parent="Room"]
-position = Vector2(1900, 520)
-scale = Vector2(2, 2)
+visible = false
+position = Vector2(1890, 510)
 shape = SubResource("RectangleShape2D_ho2su")
 
 [node name="FloorMesh" type="MeshInstance2D" parent="Room"]
 modulate = Color(0.247059, 0.427451, 0.619608, 1)
-position = Vector2(960, 1060)
-scale = Vector2(1920, 40)
+position = Vector2(960, 1050)
+scale = Vector2(1920, 60)
 mesh = SubResource("QuadMesh_6nx4q")
 
 [node name="FloorCollision" type="CollisionShape2D" parent="Room"]
-position = Vector2(960, 1060)
+visible = false
+position = Vector2(960, 1050)
 shape = SubResource("RectangleShape2D_b115b")
 
 [node name="Platform1Mesh" type="MeshInstance2D" parent="Room"]
 modulate = Color(0.247059, 0.427451, 0.619608, 1)
-position = Vector2(960, 900)
-scale = Vector2(1440, 40)
+position = Vector2(960, 810)
+scale = Vector2(1080, 60)
 mesh = SubResource("QuadMesh_nxo1o")
 
 [node name="Platform1Collision" type="CollisionShape2D" parent="Room"]
-position = Vector2(960, 900)
+visible = false
+position = Vector2(960, 810)
 shape = SubResource("RectangleShape2D_y0hta")
 
 [node name="Platform2Mesh" type="MeshInstance2D" parent="Room"]
 modulate = Color(0.247059, 0.427451, 0.619608, 1)
-position = Vector2(960, 660)
-scale = Vector2(1440, 40)
+position = Vector2(960, 510)
+scale = Vector2(1080, 60)
 mesh = SubResource("QuadMesh_nxo1o")
 
 [node name="Platform2Collision" type="CollisionShape2D" parent="Room"]
-position = Vector2(960, 660)
+visible = false
+position = Vector2(960, 510)
 shape = SubResource("RectangleShape2D_y0hta")
+
+[node name="Player2" parent="." instance=ExtResource("1_cuhlu")]
+position = Vector2(450, 766)
+
+[node name="Player3" parent="." instance=ExtResource("1_cuhlu")]
+position = Vector2(436, 454)
+
+[node name="Player4" parent="." instance=ExtResource("1_cuhlu")]
+position = Vector2(452, 158)
