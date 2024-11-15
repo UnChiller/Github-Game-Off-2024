@@ -3,9 +3,10 @@ extends CharacterBody2D
 
 #TODO: fix animations with new platformer movement
 
-const SPEED = 400.0
-const JUMP_VELOCITY = -600.0
-const WALL_JUMP_COLL_DIST = 20
+@export var START_POS: Vector2
+@export var SPEED = 480.
+@export var JUMP_VELOCITY = 600.
+@export var WALL_JUMP_COLL_DIST = 20.
 
 var anim_state  = "idle"
 var is_jumping  = false
@@ -19,7 +20,14 @@ var coyote_time = 0
 # Basic functions
 # =======================
 
+func die():
+	position = START_POS
+	velocity = Vector2.ZERO
 func _physics_process(delta):
+	if position.y > 1080:
+		die()
+		anim_state_check()
+		return
 	apply_gravity(delta)
 	move_check()
 	jump_check()
@@ -94,13 +102,13 @@ func jump_check():
 		jump_grace = 0
 		coyote_time = 0
 		velocity.x += wall_side * 1500
-		velocity.y = JUMP_VELOCITY
+		velocity.y = -JUMP_VELOCITY
 		anim_state = "jump"
 		is_jumping = true
 	if coyote_time > 0 and jump_grace > 0:
 		jump_grace = 0
 		coyote_time = 0
-		velocity.y = JUMP_VELOCITY
+		velocity.y = -JUMP_VELOCITY
 		anim_state = "jump"
 		is_jumping = true
 
