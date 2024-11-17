@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://govy4mydsu56"
-path="res://.godot/imported/cake_walk4.png-533cfd39afdbc53177f5bc16f83b83ed.ctex"
+uid="uid://uj3t7k0qig8j"
+path="res://.godot/imported/sample_tiles.png-0ea1ef6c260ae8eee8caca034aef0e36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/walk/cake_walk4.png"
-dest_files=["res://.godot/imported/cake_walk4.png-533cfd39afdbc53177f5bc16f83b83ed.ctex"]
+source_file="res://assets/sample_tiles.png"
+dest_files=["res://.godot/imported/sample_tiles.png-0ea1ef6c260ae8eee8caca034aef0e36.ctex"]
 
 [params]
 
