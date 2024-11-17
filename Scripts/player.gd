@@ -11,6 +11,7 @@ var anim_state  = "idle"
 var is_jumping  = false
 var jump_grace  = 0
 var coyote_time = 0
+var can_climb = false
 
 # Please place all player children in the player scene (except cam)
 @onready var anim_sprite = $AnimatedSprite2D
@@ -32,6 +33,8 @@ func _physics_process(delta):
 # Movement Handling
 # =======================
 
+#TODO: climbing
+
 func wall_grip_left() -> float:
 	var scaled_trigger_strength = clamp((Input.get_action_raw_strength("grab_left")-.1)/.7,0,1)
 	return (2-scaled_trigger_strength)*scaled_trigger_strength
@@ -49,6 +52,8 @@ func apply_gravity(delta):
 		var wgr=wall_grip_right()
 		if (wgl or wgr) and wall_side:
 			anim_state = "grab"
+		can_climb = wgl == 1. or wgr == 1.
+		
 		if velocity.y >= 0:
 			# sqrt*4 is the same as 16th root, pow(
 			if wall_side == 1:
